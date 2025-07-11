@@ -3,6 +3,8 @@ import {useParams} from 'react-router-dom'
 import { assets, blog_data, comments_data } from '../assets/assets';
 import Navbar from './../components/Navbar'
 import Moment from 'moment';
+import Footer from './../components/Footer'
+import Loader from '../components/Loader';
 function Blog() {
  const {id} = useParams();
  const [data , setdata] = useState(null);
@@ -77,11 +79,23 @@ useEffect(()=>{
          </form>
        </div>
 
-      </div>
+       {/* Share Buttons */}
 
+       <div className=' my-24 max-w-3xl mx-auto'>
+         <p className=' font-semibold my-4'> Share this article on social media</p>
+
+          <div className=' flex'>
+           <img src={assets.facebook_icon} width={50}/>
+              <img src={assets.twitter_icon} width={50}/>
+                 <img src={assets.googleplus_icon} width={50}/>
+          </div>
+       </div> 
+        
+      </div>
+   <Footer/>
     </div>
    </>
-  ) : <div>Loding..</div>
+  ) : <Loader/>
 }
 
 export default Blog
