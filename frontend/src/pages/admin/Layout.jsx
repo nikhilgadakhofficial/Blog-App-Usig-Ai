@@ -16,9 +16,8 @@ function Layout() {
         <button className=' text-sm px-8 py-2 bg-primary text-white rounded-full cursor-pointer' onClick={logout}>Logout</button>
     </div>
     <div className=' flex h-[calc(100vh-70px)]'>
-         <Sidebar/>
-         
-
+       <div><Sidebar/></div>
+       <Outlet/>
     </div>
     </>
   )
