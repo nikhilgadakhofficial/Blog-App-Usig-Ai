@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { assets, dashboard_data } from '../../assets/assets'
+import BlogTableItems from '../../components/adminComponts/BlogTableItems';
 
 function Dashboard() {
   const [dashboarddata , setDashboarddata] = useState({
@@ -9,12 +10,12 @@ function Dashboard() {
     recentBlogs : []
   });
 
-  const frtchDashbord = ()=>{
+  const fetchDashbord = ()=>{
     setDashboarddata(dashboard_data);
   }
 
   useEffect(()=>{
-    frtchDashbord();
+    fetchDashbord();
   },[])
 
   return (
@@ -65,7 +66,11 @@ function Dashboard() {
                  <th scope='col' className=' px-2 py-4'> Actions</th>
              </tr>
           </thead>
-          <tbody></tbody>
+          <tbody>
+            {dashboard_data.recentBlogs.map((blog, index)=>{
+             return <BlogTableItems key={blog._id} blog={blog} fetchBlog={fetchDashbord} index={index+1} />
+})}
+          </tbody>
         </table>
 
       </div>
