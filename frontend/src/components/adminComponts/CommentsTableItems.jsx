@@ -4,6 +4,7 @@ import { assets } from '../../assets/assets';
 function CommentsTableItems({comment,fetchComments}) {
     const { blog , createdAt, _id} = comment;
     const BlogDate = new Date(createdAt);
+console.log(comment);
 
   return (
     <>

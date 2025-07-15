@@ -7,7 +7,7 @@ import AddBlog from "./pages/admin/AddBlog"
 import ListBlog from "./pages/admin/ListBlog"
 import Comments from "./pages/admin/Comments"
 import Login from "./components/adminComponts/Login"
-
+import 'quill/dist/quill.snow.css'
 function App() {
 
 
