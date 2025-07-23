@@ -1,21 +1,22 @@
-import { ucs2 } from "punycode";
+
 import imagekit from "../configs/imageKit.js";
 import Blog from "../models/Blog.js";
 import fs from 'fs'
-import { create } from "domain";
-import { blob } from "stream/consumers";
+import   Comment from '../models/Comment.js'
+import { log } from "console";
+
 
 export const addBlog = async (req,res)=>{
     try {
         const {title,subTitle,description,category,isPublished } = JSON.parse(req.body.blog);
 
-        console.log(title,subTitle,description,category,isPublished);
+      
         
 
         const imageFile = req.file;
 
-      
-        
+
+    
 
         if (!title || !description || !category || !isPublished) {
             return res.json({
@@ -44,7 +45,7 @@ export const addBlog = async (req,res)=>{
             ]
         });
 
-        const image = optimizedImageUrl
+        const image =  optimizedImageUrl
         
  
         const blog = await Blog.create({
@@ -56,10 +57,13 @@ export const addBlog = async (req,res)=>{
             isPublished
         });
 
+        console.log(category);
+        
+
         res.json({
             success : true,
             message : "Blog added successfully",
-            data : blog
+            blog
         });
 
         
@@ -77,7 +81,7 @@ export const getAllBlogs = async (req,res)=>{
         const blogs = await Blog.find({isPublished : true});
         res.json({
             success : true,
-            data : blogs
+            blogs
         })
     } catch (error) {
         res.json({
@@ -101,7 +105,7 @@ export const getBlogById = async (req,res)=>{
 
          res.json({
             success : true,
-             data : blog
+             blog
          })
 
 
@@ -182,7 +186,7 @@ export const getBlogComments = async (req,res)=>{
 
         res.json({
             success : true,
-            data : comments
+             comments
         })
         
 
