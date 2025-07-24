@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react'
 import { comments_data } from '../../assets/assets';
 import CommentsTableItems from '../../components/adminComponts/CommentsTableItems';
+import { useAppContext } from '../../contaxt/AppContaxt';
+import toast from 'react-hot-toast';
 function Comments() {
   const [comments,setComments] = useState([]);
   const [filter, setFilter] = useState('Not Approved');
 
-  const fetchComments = ()=>{
-    setComments(comments_data);
+  const {axios} = useAppContext();
+
+  const fetchComments = async ()=>{
+   try {
+    const {data} = await axios.get('api/admin/comments');
+    data.success ? setComments(data.comments) : toast.error(data.message)
+   } catch (error) {
+    toast.error(error.message)
+   }
   }
   useEffect(()=>{
     fetchComments();
@@ -34,7 +43,7 @@ function Comments() {
           </tr>
         </thead>
         <tbody>
-          {comments_data.filter((comment)=>{
+          {comments.filter((comment)=>{
             if (filter === "Approved")  return comment.isApproved === true;
             return comment.isApproved === false;
           }).map((comment,index)=>{

@@ -36,7 +36,7 @@ export const getAllBlogAdmin = async (req,res)=>{
 
     res.json({
       success : true,
-      data : blogs
+      blogs
     });
   } catch (error) {
      res.json({
@@ -52,7 +52,7 @@ export const getAllCommentsAdmin = async (req,res)=>{
 
       res.json({
         success : true,
-        data : comments
+        comments
       });
   } catch (error) {
      res.json({
@@ -75,7 +75,7 @@ export const getDashboard = async (req,res)=>{
 
      res.json({
       success : true,
-      data : dashboardData
+      dashboardData
      })
   } catch (error) {
      res.json({

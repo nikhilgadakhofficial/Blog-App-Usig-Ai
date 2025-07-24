@@ -35,7 +35,7 @@ function AddBlog() {
       category,
       isPublished
     }
-    //console.log(blog);
+
     
     const fromData = new FormData()
     fromData.append('blog',JSON.stringify(blog))
@@ -59,9 +59,6 @@ function AddBlog() {
    }
    finally{
     setIsAsding(false)
-    //console.log(catgory,subTitle,title,isPublished,quillRef.current.root.innerHTML,image);
-    
-    
    }
 
   }
